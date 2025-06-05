@@ -1,6 +1,19 @@
-<h2>Product List</h2>
-<ul>
-  <li *ngFor="let p of products">
-    <a [routerLink]="[p.id]">{{ p.name }} - ${{ p.price }}</a>
-  </li>
-</ul>
+<div class="product-list">
+  <h1 class="title">熱銷商品</h1>
+
+  <div class="product-grid">
+    <div class="card" *ngFor="let product of products" (click)="viewDetail(product)">
+      <div class="image-box">
+        <img [src]="product.imageUrl" (error)="onImageError($event)"/>
+      </div>
+      <div class="card-content">
+        <div class="product-name">{{ product.name }}</div>
+        <div class="product-desc">{{ product.description }}</div>
+        <div class="card-footer">
+          <span class="price">NT$ {{ product.price }}</span>
+          <button class="buy-btn" (click)="viewDetail(product); $event.stopPropagation()">查看詳情</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

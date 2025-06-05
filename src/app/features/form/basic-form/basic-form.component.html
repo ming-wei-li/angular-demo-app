@@ -1,8 +1,42 @@
-<h2>Sample Form</h2>
-<form [formGroup]="form" (ngSubmit)="submit()">
-  <label>Name:</label>
-  <input formControlName="name" /><br />
-  <label>Email:</label>
-  <input formControlName="email" /><br />
-  <button type="submit" [disabled]="form.invalid">Submit</button>
-</form>
+<div class="contact-wrapper">
+  <h2>客戶諮詢表單</h2>
+
+  <form action="https://script.google.com/macros/s/YOUR-WEBHOOK-ID/exec" method="POST" target="hidden_iframe"
+    [formGroup]="contactForm" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="name">姓名</label>
+      <input id="name" formControlName="name" type="text" />
+      <div class="error" *ngIf="submitted && contactForm.get('name')?.invalid">
+        請輸入您的姓名
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" type="email" />
+      <div class="error" *ngIf="submitted && contactForm.get('email')?.invalid">
+        請輸入有效的 Email
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="subject">諮詢主題</label>
+      <input id="subject" formControlName="subject" type="text" />
+      <div class="error" *ngIf="submitted && contactForm.get('subject')?.invalid">
+        請輸入主題
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="message">內容</label>
+      <textarea id="message" formControlName="message" rows="5"></textarea>
+      <div class="error" *ngIf="submitted && contactForm.get('message')?.invalid">
+        請輸入至少 10 個字
+      </div>
+    </div>
+
+    <button type="submit">送出諮詢</button>
+
+    <div class="success-message" *ngIf="successMessage">{{ successMessage }}</div>
+  </form>
+</div>
