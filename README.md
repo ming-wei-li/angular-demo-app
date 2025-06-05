@@ -25,3 +25,16 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# Angular 12 Demo App
+
+A sample Angular 12 application demonstrating routing, services, mock API, and forms.
+
+## Setup
+
+```bash
+git clone https://github.com/ming-wei-li/angular-demo-app.git
+cd angular-demo-app
+npm install
+ng serve
+
