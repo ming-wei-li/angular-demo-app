@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class BasicFormComponent implements OnInit {
   public submitted: boolean = false;
   public successMessage: string = '';
-  public gasUrl = 'https://script.google.com/a/localhost:4200/macros/s/AKfycbwx1380xiaBX_0tjVjUZ689p4v75WqRxrN85YIB-6j-6bbHv65REp07-EXreqEv9E8/exec';
+  public gasUrl = 'https://script.google.com/macros/s/AKfycbwx1380xiaBX_0tjVjUZ689p4v75WqRxrN85YIB-6j-6bbHv65REp07-EXreqEv9E8/exec';
   public contactForm!: FormGroup;
 
   constructor(
