@@ -19,4 +19,4 @@ import { InMemoryDataService } from './core/services/in-memory-data.service';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

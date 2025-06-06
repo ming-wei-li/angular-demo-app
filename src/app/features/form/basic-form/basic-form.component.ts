@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-basic-form',
@@ -10,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class BasicFormComponent implements OnInit {
   public submitted: boolean = false;
   public successMessage: string = '';
-  public gasUrl = 'https://script.google.com/macros/s/AKfycbwx1380xiaBX_0tjVjUZ689p4v75WqRxrN85YIB-6j-6bbHv65REp07-EXreqEv9E8/exec';
+  public gasUrl = 'https://script.google.com/macros/s/AKfycbwR1gk3CUWz7H7MnzbojZydWOLHJN5umRklCc3OO5HrmyPoZjFl0y18FT_7QCnJ07A/exec';
   public contactForm!: FormGroup;
 
   constructor(
@@ -19,6 +21,9 @@ export class BasicFormComponent implements OnInit {
   ) { }
 
   public submit(): void {
+    if (!this.contactForm.valid) {
+      return;
+    }
     const data = this.contactForm.value;
     this.submitted = true;
     const body = new HttpParams()
@@ -27,8 +32,8 @@ export class BasicFormComponent implements OnInit {
       .set('subject', data.subject)
       .set('message', data.message);
 
-    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-    this.http.post(this.gasUrl, body.toString(), { headers }).subscribe({
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.sendInquiry(body).subscribe({
       next: (res: any) => {
         alert('送出成功！');
       },
@@ -42,6 +47,14 @@ export class BasicFormComponent implements OnInit {
     });
   }
 
+  private sendInquiry(inquiryData: any): Observable<any> {
+    console.log('模擬發送諮詢...');
+    console.log('模擬接收到的數據:', inquiryData);
+
+    return of({ success: true, message: '模擬：您的諮詢已成功送出！' }).pipe(
+      delay(1000) // 模擬 1 秒的網路延遲
+    );
+  }
 
   private setForm(): void {
     this.contactForm = this.fb.group({

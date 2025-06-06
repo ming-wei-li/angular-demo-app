@@ -1,0 +1,16 @@
+.chart-container {
+  height: 400px;
+  width: 100%;
+}
+
+.toolbar {
+  margin-bottom: 10px;
+  button {
+    padding: 6px 12px;
+    background: #1890ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}

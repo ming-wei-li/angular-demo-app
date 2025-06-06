@@ -1,0 +1,22 @@
+<div class="search-box">
+  <input [(ngModel)]="keyword" (input)="onSearch()" placeholder="輸入產品名稱或分類..." />
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>名稱</th>
+      <th>分類</th>
+      <th>價格</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of filteredProducts">
+      <td>{{ product.name }}</td>
+      <td>{{ product.category }}</td>
+      <td>${{ product.price }}</td>
+      <td><button (click)="goDetail(product.id)">詳情</button></td>
+    </tr>
+  </tbody>
+</table>
