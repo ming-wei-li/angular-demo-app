@@ -1,0 +1,15 @@
+<div class="customer-detail">
+  <h2>客戶詳情</h2>
+
+  <div *ngIf="isLoading">載入中...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="customer && !isLoading" class="detail-card">
+    <p><strong>名稱：</strong>{{ customer.name }}</p>
+    <p><strong>Email：</strong>{{ customer.email }}</p>
+    <p><strong>電話：</strong>{{ customer.phone }}</p>
+    <p><strong>地址：</strong>{{ customer.address }}</p>
+  </div>
+
+  <button (click)="back()">返回列表</button>
+</div>

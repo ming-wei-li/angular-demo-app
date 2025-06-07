@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'form', loadChildren: () => import('./features/form/form.module').then(m => m.FormModule) },
   { path: 'report', loadChildren: () => import('./features/report/report.module').then(m => m.ReportModule) },
   { path: 'search', loadChildren: () => import('./features/search/search.module').then(m => m.SearchModule) },
+  { path: 'customer', loadChildren: () => import('./features/customer/customer.module').then(m => m.CustomerModule) },
 ];
 
 @NgModule({
