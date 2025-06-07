@@ -1,0 +1,5 @@
+<div class="mini-card" title="{{ product.name }}">
+  <img [src]="product.imageUrl" (error)="onImageError($event)" alt="{{ product.name }}" />
+  <p class="name">{{ product.name }}</p>
+  <p class="price">${{ product.price }}</p>
+</div>

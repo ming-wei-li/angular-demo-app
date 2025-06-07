@@ -1,22 +1,42 @@
-<div class="search-box">
-  <input [(ngModel)]="keyword" (input)="onSearch()" placeholder="輸入產品名稱或分類..." />
-</div>
+<div class="search-container">
+  <div class="search-bar search-panel">
+    <input [(ngModel)]="keyword" placeholder="輸入產品名稱或分類..." />
+    <button (click)="onSearch()">搜尋</button>
+    <button class="reset" (click)="onReset()">清除</button>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>名稱</th>
-      <th>分類</th>
-      <th>價格</th>
-      <th>操作</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let product of filteredProducts">
-      <td>{{ product.name }}</td>
-      <td>{{ product.category }}</td>
-      <td>${{ product.price }}</td>
-      <td><button (click)="goDetail(product.id)">詳情</button></td>
-    </tr>
-  </tbody>
-</table>
+  <div class="view-switcher">
+    <button [class.active]="viewType === 'grid4'" (click)="setView('grid4')">
+      🟦 四欄格
+    </button>
+    <button [class.active]="viewType === 'grid3'" (click)="setView('grid3')">
+      🟨 三欄大卡
+    </button>
+    <button [class.active]="viewType === 'list'" (click)="setView('list')">
+      🟥 條列式
+    </button>
+    <button [class.active]="viewType === 'mini'" (click)="setView('mini')">
+      ⬛️ 縮圖
+    </button>
+  </div>
+
+  <div [ngSwitch]="viewType" class="result-container">
+    <div *ngSwitchCase="'grid4'" class="product-grid grid4">
+      <app-product-card *ngFor="let p of filteredProducts" [product]="p" (click)="goDetail(p.id)"></app-product-card>
+    </div>
+
+    <div *ngSwitchCase="'grid3'" class="product-grid grid3">
+      <app-product-card-large *ngFor="let p of filteredProducts" [product]="p"
+        (click)="goDetail(p.id)"></app-product-card-large>
+    </div>
+
+    <div *ngSwitchCase="'list'" class="product-list">
+      <app-product-list-item *ngFor="let p of filteredProducts" [product]="p"
+        (click)="goDetail(p.id)"></app-product-list-item>
+    </div>
+
+    <div *ngSwitchCase="'mini'" class="product-grid mini">
+      <app-product-mini *ngFor="let p of filteredProducts" [product]="p" (click)="goDetail(p.id)"></app-product-mini>
+    </div>
+  </div>
+</div>

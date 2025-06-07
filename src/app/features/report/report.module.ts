@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { ReportRoutingModule } from './report-routing.module';
 import { ReportComponent } from './report.component';
 // import { NgxEchartsModule } from 'ngx-echarts';
-import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -14,10 +13,7 @@ import { BrowserModule } from '@angular/platform-browser';
   imports: [
     CommonModule,
     ReportRoutingModule,
-    BrowserModule,
-    // NgxEchartsModule.forRoot({
-    //   echarts: () => import('echarts')
-    // }),
+    // NgxEchartsModule,
   ]
 })
 export class ReportModule { }
